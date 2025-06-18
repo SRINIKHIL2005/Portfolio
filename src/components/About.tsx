@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, useInView } from "framer-motion";
@@ -34,52 +33,28 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-lg">
-              I'm a <span className="font-semibold gradient-text-cyber">Certified Full Stack Developer & AI Specialist</span> with over 2 years of experience building secure, scalable web solutions. 
+              I'm an <span className="font-semibold gradient-text-cyber">Full Stack Developer &AI Specialist</span> with experience building secure scalable web solutions and integrating AI.
             </p>
             <p>
-              My expertise spans the <span className="font-mono text-accent">MERN</span> stack development, <span className="font-mono text-accent">REST API</span> security (JWT/OAuth), and large language model integration. As an <span className="font-mono text-accent">NVIDIA-certified</span> AI developer, I've successfully optimized MongoDB performance for over 1 million records and implemented real-time analytics systems.
+              My expertise spans the <span className="font-mono text-accent">MERN</span> stack development, <span className="font-mono text-accent">REST API</span> security (JWT/OAuth), and large language model integration. I have hands-on experience with AI development and enjoy learning new technologies in the field.
             </p>
             <p>
               I'm passionate about combining web development with artificial intelligence to create innovative solutions that solve real-world problems.
             </p>
-
-            <div className="pt-4 flex flex-wrap gap-3">
-              <a 
-                href="#contact" 
-                className="inline-flex items-center text-sm text-accent hover:text-accent/80 transition-colors"
-              >
-                <span className="mr-2">Contact Me</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </a>
-              <a 
-                href="#" 
-                className="inline-flex items-center text-sm text-accent hover:text-accent/80 transition-colors"
-              >
-                <span className="mr-2">Download CV</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-              </a>
-            </div>
           </motion.div>
           
           <div className="grid grid-cols-2 gap-4 md:gap-6">
             {[
               {
                 title: "Experience",
-                value: "2+",
-                unit: "Years",
+                value: "1",
+                unit: "Year",
                 desc: "Full Stack Development",
                 color: "from-tech-blue to-tech-purple"
               },
               {
                 title: "Projects",
-                value: "10+",
+                value: "5+",
                 unit: "Projects",
                 desc: "Completed Successfully",
                 color: "from-tech-purple to-tech-cyan"
@@ -118,6 +93,16 @@ const About = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+
+        <div className="mt-16 text-center">
+          <p className="text-sm text-muted-foreground mb-4">Feel free to reach out to me via email for any inquiries or collaborations.</p>
+          <a href="mailto:dronasrinikhil@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors hover:scale-110 transform duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+          </a>
         </div>
       </div>
     </motion.section>

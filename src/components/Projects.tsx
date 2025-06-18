@@ -33,8 +33,8 @@ const Projects = () => {
         "Increased user engagement by 40% via React animations and progress tracking"
       ],
       links: {
-        demo: "#",
-        github: "#"
+        demo: "https://srinikhil2005.github.io/AI-Powered-Quiz-Generator/",
+        github: "https://github.com/SRINIKHIL2005/AI-Powered-Quiz-Generator"
       }
     },
     {
@@ -47,8 +47,8 @@ const Projects = () => {
         "Implemented real-time analytics dashboard for instructors"
       ],
       links: {
-        demo: "#",
-        github: "#"
+        demo: "https://e-f-g-1.onrender.com/",
+        github: "https://github.com/SRINIKHIL2005/EDUGALXY"
       }
     },
     {
@@ -61,8 +61,8 @@ const Projects = () => {
         "Implemented personalized learning paths with recommendation algorithms"
       ],
       links: {
-        demo: "#",
-        github: "#"
+        demo: "https://srinikhil2005.github.io/Solo-Learn-Learning-Platform-/",
+        github: "https://github.com/SRINIKHIL2005/Solo-Learn-Learning-Platform-"
       }
     }
   ];

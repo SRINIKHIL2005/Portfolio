@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -17,16 +16,19 @@ const Skills = () => {
   
   const skills: { [key: string]: Skill[] } = {
     "Languages & Frameworks": [
-      { name: "React", percentage: 90, category: "frontend" },
-      { name: "Node.js", percentage: 85, category: "backend" },
+      { name: "React", percentage: 40, category: "frontend" },
+      { name: "Node.js", percentage: 40, category: "backend" },
       { name: "Python", percentage: 80, category: "languages" },
-      { name: "JavaScript", percentage: 90, category: "languages" },
-      { name: "Java", percentage: 75, category: "languages" },
-      { name: "Flask", percentage: 70, category: "backend" },
+      { name: "JavaScript", percentage: 60, category: "languages" },
+      { name: "Java", percentage: 90, category: "languages" },
+      { name: "Flask", percentage: 50, category: "backend" },
+      { name: "C", percentage: 98, category: "languages" },
+      { name: "HTML", percentage: 90, category: "frontend" },
+      { name: "CSS", percentage: 60, category: "frontend" },
     ],
     "Databases & DevOps": [
       { name: "MongoDB", percentage: 85, category: "database" },
-      { name: "MySQL", percentage: 80, category: "database" },
+      { name: "MySQL", percentage: 87, category: "database" },
       { name: "Firebase", percentage: 75, category: "database" },
       { name: "Docker", percentage: 70, category: "devops" },
       { name: "CI/CD", percentage: 65, category: "devops" },
