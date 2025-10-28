@@ -11,6 +11,7 @@ interface TimelineItem {
   description: string[];
   type: 'work' | 'education';
   skills?: string[];
+  image?: string;
 }
 
 const Experience = () => {
@@ -28,7 +29,8 @@ const Experience = () => {
         "Integrated NLP modules using PyTorch for personalized learning recommendations (92% accuracy)"
       ],
       skills: ["MERN", "JWT", "NLP", "PyTorch", "React"],
-      type: 'work'
+      type: 'work',
+      image: `${import.meta.env.BASE_URL}Internships/Uptoskills.png`
     },
     {
       title: "Network Engineering Intern",
@@ -39,7 +41,8 @@ const Experience = () => {
         "Developed network monitoring dashboard with 98.5% uptime using React and Python analytics"
       ],
       skills: ["DNS", "React", "Python", "Network Security", "Pub-Sub"],
-      type: 'work'
+      type: 'work',
+      image: `${import.meta.env.BASE_URL}Internships/IIFON.png`
     },
     {
       title: "Machine Learning Intern",
@@ -50,7 +53,8 @@ const Experience = () => {
         "Provided data insights for process optimization"
       ],
       skills: ["Machine Learning", "Python", "scikit-learn", "Pandas"],
-      type: 'work'
+      type: 'work',
+      image: `${import.meta.env.BASE_URL}Internships/EDUNET.png`
     },
     {
       title: "B.Tech in Computer Science & Engineering",
@@ -162,6 +166,22 @@ const Experience = () => {
                               {skill}
                             </Badge>
                           ))}
+                        </div>
+                      )}
+
+                      {item.image && (
+                        <div className="mt-6 rounded-lg overflow-hidden bg-muted/50">
+                          <a href={item.image} target="_blank" rel="noopener noreferrer" aria-label={`Open ${item.organization} certificate`}>
+                            <img 
+                              src={item.image} 
+                              alt={`${item.organization} Certificate`}
+                              className="w-full h-40 object-contain p-4"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                              }}
+                            />
+                          </a>
                         </div>
                       )}
                     </CardContent>
