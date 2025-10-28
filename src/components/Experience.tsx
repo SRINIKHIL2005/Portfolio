@@ -33,12 +33,23 @@ const Experience = () => {
     {
       title: "Network Engineering Intern",
       organization: "India Internet Foundation",
-      period: "Feb 2025 – Present",
+      period: "Feb 2025 – Aug 2025",
       description: [
         "Optimized DNS infrastructure handling 10k+ queries/second using Pub-Sub architecture",
         "Developed network monitoring dashboard with 98.5% uptime using React and Python analytics"
       ],
       skills: ["DNS", "React", "Python", "Network Security", "Pub-Sub"],
+      type: 'work'
+    },
+    {
+      title: "Machine Learning Intern",
+      organization: "Edunet Foundation (IBM)",
+      period: "Jun 2025 – Jul 2025",
+      description: [
+        "Developed an employee salary prediction model for salary forecasting using machine learning",
+        "Provided data insights for process optimization"
+      ],
+      skills: ["Machine Learning", "Python", "scikit-learn", "Pandas"],
       type: 'work'
     },
     {

@@ -32,6 +32,7 @@ const Projects = () => {
         "Reduced API latency by 35% through MongoDB indexing and query optimization",
         "Increased user engagement by 40% via React animations and progress tracking"
       ],
+      image: "/project-screenshots/quiz-generator.jpg",
       links: {
         demo: "https://srinikhil2005.github.io/AI-Powered-Quiz-Generator/",
         github: "https://github.com/SRINIKHIL2005/AI-Powered-Quiz-Generator"
@@ -46,6 +47,7 @@ const Projects = () => {
         "Achieved 99.9% uptime through MongoDB Atlas cluster optimization",
         "Implemented real-time analytics dashboard for instructors"
       ],
+      image: "/project-screenshots/feedback-system.jpg",
       links: {
         demo: "https://e-f-g-1.onrender.com/",
         github: "https://github.com/SRINIKHIL2005/EDUGALXY"
@@ -60,9 +62,50 @@ const Projects = () => {
         "Built AI-driven UI/UX platform with MongoDB, analytics, secure APIs",
         "Implemented personalized learning paths with recommendation algorithms"
       ],
+      image: "/project-screenshots/solo-learn.jpg",
       links: {
         demo: "https://srinikhil2005.github.io/Solo-Learn-Learning-Platform-/",
         github: "https://github.com/SRINIKHIL2005/Solo-Learn-Learning-Platform-"
+      }
+    },
+    {
+      title: "Saathi — A Mental Wellness Friend",
+      description: "Generative AI mental wellness app with secure chat, mood tracking, and crisis detection.",
+      technologies: [
+        "MongoDB",
+        "Express",
+        "React",
+        "Node.js",
+        "Vertex AI",
+        "LLMs",
+        "NLP",
+        "Firebase Auth",
+        "Firestore",
+        "Google Cloud"
+      ],
+      highlights: [
+        "Built secure chat and user management with Firebase Auth and Firestore (Sep 2025)",
+        "Integrated Vertex AI LLMs with NLP-based sentiment analysis for mood tracking and crisis detection",
+        "Connected Google Cloud APIs for robust AI workflows; deployed public live demo"
+      ],
+      image: "/project-screenshots/saathi.png",
+      links: {
+        demo: "https://srinikhil2005.github.io/GENAI-V1/",
+        github: "https://github.com/SRINIKHIL2005/GENAI-V1"
+      }
+    },
+    {
+      title: "Math Tutor (AI/ML)",
+      description: "RAG-based AI tutor using FastAPI and React, integrating vector databases for contextual learning accuracy.",
+      technologies: ["FastAPI", "React", "Python", "RAG", "Vector DB", "LangGraph", "MongoDB Atlas"],
+      highlights: [
+        "Implemented Retrieval-Augmented Generation pipeline with vector search for contextual answers",
+        "Built FastAPI backend and React UI with math (LaTeX) input support",
+        "Deployed live demo for interactive problem solving"
+      ],
+      image: "/project-screenshots/MathTutor.png",
+      links: {
+        demo: "https://srinikhil2005.github.io/Math_Tutor/"
       }
     }
   ];
@@ -98,7 +141,21 @@ const Projects = () => {
     "Chart.js": "bg-tech-orange/20 text-tech-orange border-tech-orange/30",
     "MongoDB Atlas": "bg-tech-green/20 text-tech-green border-tech-green/30",
     "Gemini API": "bg-tech-purple/20 text-tech-purple border-tech-purple/30",
-    "PyMuPDF": "bg-tech-blue/20 text-tech-blue border-tech-blue/30"
+    "PyMuPDF": "bg-tech-blue/20 text-tech-blue border-tech-blue/30",
+    // Added mappings for new project tech
+    "Vertex AI": "bg-tech-cyan/20 text-tech-cyan border-tech-cyan/30",
+    "Firebase": "bg-tech-orange/20 text-tech-orange border-tech-orange/30",
+    "Firebase Auth": "bg-tech-orange/20 text-tech-orange border-tech-orange/30",
+    "Firestore": "bg-tech-orange/20 text-tech-orange border-tech-orange/30",
+    "Google Cloud": "bg-tech-blue/20 text-tech-blue border-tech-blue/30",
+    "NLP": "bg-tech-red/20 text-tech-red border-tech-red/30",
+    "LLMs": "bg-tech-purple/20 text-tech-purple border-tech-purple/30",
+    // Math Tutor specific
+    "FastAPI": "bg-tech-green/20 text-tech-green border-tech-green/30",
+    "Python": "bg-tech-orange/20 text-tech-orange border-tech-orange/30",
+    "RAG": "bg-tech-purple/20 text-tech-purple border-tech-purple/30",
+    "Vector DB": "bg-tech-cyan/20 text-tech-cyan border-tech-cyan/30",
+    "LangGraph": "bg-tech-cyan/20 text-tech-cyan border-tech-cyan/30"
   };
 
   const getTechBadgeClass = (tech: string) => {
@@ -225,6 +282,16 @@ const Projects = () => {
                     <p className="text-muted-foreground">{projects[activeIndex].description}</p>
                   </CardHeader>
                   <CardContent className="pt-6">
+                    {projects[activeIndex].image && (
+                      <div className="mb-6 rounded-md overflow-hidden bg-secondary/20 border border-accent/10">
+                        <img 
+                          src={projects[activeIndex].image}
+                          alt={`${projects[activeIndex].title} screenshot`}
+                          className="w-full h-56 md:h-72 object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
                     <h4 className="font-medium mb-2 flex items-center gap-2">
                       <Minus className="text-accent" size={18} /> Key Highlights
                     </h4>

@@ -33,13 +33,13 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-lg">
-              I'm an <span className="font-semibold gradient-text-cyber">Full Stack Developer &AI Specialist</span> with experience building secure scalable web solutions and integrating AI.
+              I'm a <span className="font-semibold gradient-text-cyber">Computer Science student</span> interested in <span className="font-mono text-accent">Web Development</span>, <span className="font-mono text-accent">AI</span>, <span className="font-mono text-accent">automation</span>, and <span className="font-mono text-accent">data analytics</span>.
             </p>
             <p>
-              My expertise spans the <span className="font-mono text-accent">MERN</span> stack development, <span className="font-mono text-accent">REST API</span> security (JWT/OAuth), and large language model integration. I have hands-on experience with AI development and enjoy learning new technologies in the field.
+              I build scalable projects and systems that enhance operational efficiency and decision‑making. My foundation spans <span className="font-mono text-accent">Python</span>, <span className="font-mono text-accent">C</span>, <span className="font-mono text-accent">Java</span>, cloud technologies, <span className="font-mono text-accent">AI & ML</span>, and full‑stack development.
             </p>
             <p>
-              I'm passionate about combining web development with artificial intelligence to create innovative solutions that solve real-world problems.
+              Recently, I've focused on practical AI integrations (APIs and frameworks), secure API design, and data‑driven features that deliver measurable impact.
             </p>
           </motion.div>
           
@@ -49,14 +49,14 @@ const About = () => {
                 title: "Experience",
                 value: "1",
                 unit: "Year",
-                desc: "Full Stack Development",
+                desc: "Projects & Internships",
                 color: "from-tech-blue to-tech-purple"
               },
               {
                 title: "Projects",
                 value: "5+",
-                unit: "Projects",
-                desc: "Completed Successfully",
+                unit: "Developed",
+                desc: "Hackathons & Internship Projects",
                 color: "from-tech-purple to-tech-cyan"
               },
               {

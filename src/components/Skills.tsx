@@ -33,13 +33,24 @@ const Skills = () => {
       { name: "Docker", percentage: 70, category: "devops" },
       { name: "CI/CD", percentage: 65, category: "devops" },
       { name: "AWS", percentage: 70, category: "devops" },
+      { name: "PostgreSQL", percentage: 72, category: "database" },
+      { name: "Linux", percentage: 75, category: "devops" },
     ],
     "AI/ML & Security": [
       { name: "NLP", percentage: 75, category: "ai" },
       { name: "LLMs", percentage: 80, category: "ai" },
+      { name: "Gemini API", percentage: 70, category: "ai" },
+      { name: "Hugging Face", percentage: 68, category: "ai" },
+      { name: "OpenAI API", percentage: 72, category: "ai" },
+      { name: "TensorFlow", percentage: 65, category: "ai" },
       { name: "Network Security", percentage: 70, category: "security" },
       { name: "JWT Auth", percentage: 85, category: "security" },
       { name: "API Development", percentage: 90, category: "backend" },
+    ],
+    "Tools": [
+      { name: "Git", percentage: 85, category: "tools" },
+      { name: "VS Code", percentage: 90, category: "tools" },
+      { name: "MongoDB Atlas/Compass", percentage: 80, category: "tools" },
     ]
   };
 
