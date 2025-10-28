@@ -111,7 +111,7 @@ const Certificates = () => {
             Certifications & Achievements
           </motion.h2>
           <motion.div 
-            className="h-1 w-20 bg-gradient-cyber mx-auto"
+            className="h-1 w-20 bg-gradient-diamond mx-auto"
             initial={{ width: 0 }}
             animate={isInView ? { width: 80 } : { width: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -137,6 +137,7 @@ const Certificates = () => {
               <Card 
                 className="p-6 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 hover:shadow-lg transition-all duration-300"
               >
+                <div className="h-1 w-full bg-gradient-gold mb-4"></div>
               {/* Certificate Image */}
               {cert.image && (
                 <div className="mb-6 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">

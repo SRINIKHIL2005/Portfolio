@@ -140,6 +140,7 @@ const Experience = () => {
                       ? 'border-l-tech-blue' 
                       : 'border-l-tech-purple'
                   } border-l-4 backdrop-blur-sm bg-card/75`}>
+                    <div className="h-1 w-full bg-gradient-gold"></div>
                     <CardHeader className="pb-2">
                       <div className="flex items-center justify-between">
                         <CardTitle className="text-lg font-bold">{item.title}</CardTitle>
