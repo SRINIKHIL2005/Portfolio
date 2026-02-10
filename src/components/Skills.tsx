@@ -27,7 +27,7 @@ const Skills = () => {
       { name: "CSS", percentage: 60, category: "frontend" },
     ],
     "Databases & DevOps": [
-      { name: "MongoDB", percentage: 85, category: "database" },
+      { name: "MongoDB (Python Driver)", percentage: 85, category: "database" },
       { name: "MySQL", percentage: 87, category: "database" },
       { name: "Firebase", percentage: 75, category: "database" },
       { name: "Docker", percentage: 70, category: "devops" },
@@ -202,7 +202,7 @@ const Skills = () => {
             {[
               { name: "React", color: "bg-tech-blue" },
               { name: "Node.js", color: "bg-tech-green" },
-              { name: "MongoDB", color: "bg-tech-cyan" },
+              { name: "MongoDB (PyMongo)", color: "bg-tech-cyan" },
               { name: "AI/ML", color: "bg-tech-purple" },
               { name: "Python", color: "bg-tech-indigo" },
               { name: "Network Security", color: "bg-tech-red" },

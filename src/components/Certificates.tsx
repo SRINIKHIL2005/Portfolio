@@ -48,6 +48,26 @@ const Certificates = () => {
       description: "Validated skills in Salesforce Agentforce for building AI-assisted CRM workflows and automations.",
   image: `${import.meta.env.BASE_URL}certificates/Salesforce.png`
     },
+    // MongoDB Certifications
+    {
+      title: "MongoDB Associate Developer (Python Driver)",
+      issuer: "MongoDB University",
+      date: "2025",
+      credentialId: "Associate Developer",
+      skills: ["MongoDB", "PyMongo", "Python Driver", "Database Design", "CRUD Operations"],
+      description: "Certified in MongoDB development using Python driver (PyMongo). Demonstrated expertise in database design, queries, aggregation pipelines, and Python application integration.",
+  image: `${import.meta.env.BASE_URL}certificates/MongoDB_Associate_Dev.png`
+    },
+    {
+      title: "MongoDB CRUD Operations Badge",
+      issuer: "MongoDB University",
+      date: "2025",
+      credentialId: "CRUD Badge",
+      skills: ["MongoDB", "CRUD Operations", "Data Manipulation", "Query Optimization"],
+      description: "Validated proficiency in MongoDB CRUD operations, including Create, Read, Update, and Delete operations with advanced query patterns and performance optimization.",
+  image: `${import.meta.env.BASE_URL}certificates/MongoDB_CRUDOps.png`
+    },
+    // Automation Anywhere Certifications
     {
       title: "Essentials Automation Certification",
       issuer: "Automation Anywhere",
@@ -56,6 +76,15 @@ const Certificates = () => {
       skills: ["RPA", "Automation Anywhere", "Bot Development", "Process Automation"],
       description: "Demonstrated knowledge of Robotic Process Automation fundamentals and building bots using Automation Anywhere tools.",
   image: `${import.meta.env.BASE_URL}certificates/Automation_Anywhere.png`
+    },
+    {
+      title: "Automation Anywhere Certified Advanced RPA Developer",
+      issuer: "Automation Anywhere",
+      date: "2025",
+      credentialId: "Advanced RPA Developer",
+      skills: ["Advanced RPA", "Automation Anywhere", "Bot Development", "IQ Bot", "MetaBot", "Task Bots"],
+      description: "Advanced certification in Robotic Process Automation demonstrating expertise in complex bot development, IQ Bot, MetaBot, and enterprise-level automation solutions.",
+  image: `${import.meta.env.BASE_URL}certificates/Automation_Anywhere_Advanced.png`
     },
     {
       title: "CipherCop National Event 2025 Finalist",
