@@ -62,10 +62,11 @@ export default {
 					blue: '#2563eb',
 					purple: '#7c3aed',
 					cyan: '#06b6d4',
-					indigo: '#4f46e5',
+					indigo: '#6366f1',
 					green: '#10b981',
 					red: '#ef4444',
-					orange: '#f97316'
+					orange: '#f97316',
+					pink: '#ec4899'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -147,11 +148,12 @@ export default {
 				'parallax': 'parallax 3s ease-out infinite alternate'
 			},
 			backgroundImage: {
-				'gradient-tech': 'linear-gradient(135deg, #2563eb, #7c3aed)',
-				'gradient-cyber': 'linear-gradient(135deg, #10b981, #2563eb)',
-				'gradient-ai': 'linear-gradient(135deg, #7c3aed, #ef4444)',
+				'gradient-tech': 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+				'gradient-cyber': 'linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%)',
+				'gradient-ai': 'linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)',
 				'gradient-radial': 'radial-gradient(circle, var(--tw-gradient-stops))',
-				'grid-pattern': 'linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)'
+				'grid-pattern': 'linear-gradient(to right, hsl(var(--border) / 0.3) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border) / 0.3) 1px, transparent 1px)',
+				'glass': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)'
 			}
 		}
 	},

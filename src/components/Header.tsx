@@ -2,11 +2,31 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
+import { Moon, Sun } from "lucide-react";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  const toggleTheme = () => {
+    // Use View Transitions API if supported for smooth animation
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        setTheme(theme === "dark" ? "light" : "dark");
+      });
+    } else {
+      setTheme(theme === "dark" ? "light" : "dark");
+    }
+  };
+
+  // Avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   const navItems = [
     { name: "About", href: "#about", id: "about" },
@@ -71,7 +91,7 @@ const Header = () => {
         </motion.a>
         
         <motion.nav 
-          className="hidden md:flex items-center gap-8"
+          className="hidden md:flex items-center gap-6"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -96,9 +116,40 @@ const Header = () => {
               )}
             </a>
           ))}
+          
+          {/* Theme Toggle Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="relative rounded-full hover:bg-accent/10 transition-all hover:scale-110 active:scale-95"
+          >
+            {mounted && (
+              <>
+                <Sun className="h-5 w-5 rotate-0 scale-100 transition-all duration-500 dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all duration-500 dark:rotate-0 dark:scale-100" />
+              </>
+            )}
+            <span className="sr-only">Toggle theme</span>
+          </Button>
         </motion.nav>
         
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-3">
+          {/* Theme Toggle for Mobile */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="relative rounded-full"
+          >
+            {mounted && (
+              <>
+                <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              </>
+            )}
+          </Button>
+          
           <Button variant="ghost" className="text-lg" onClick={toggleMobileMenu}>
             {mobileMenuOpen ? "×" : "☰"}
           </Button>
