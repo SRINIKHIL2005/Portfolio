@@ -198,3 +198,93 @@
   width: 24px;
   height: 24px;
 }
+
+/* Legendary Card Effect - Pokemon Style Holographic */
+.legendary-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 100ms ease, box-shadow 300ms ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transform: perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
+}
+
+/* Holographic gradient layer */
+.legendary-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-image: linear-gradient(115deg, transparent 20%, #00e7ff 36%, #ff00e7 43%, #00e7ff 50%, #ff00e7 57%, transparent 70%);
+  background-position: var(--bg-x, 0%) var(--bg-y, 0%);
+  background-repeat: no-repeat;
+  background-size: 300% 300%;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+  border-radius: inherit;
+}
+
+/* Sparkle/glitter layer */
+.legendary-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.8) 0%, transparent 1%),
+    radial-gradient(circle at 60% 70%, rgba(255, 255, 255, 0.6) 0%, transparent 1%),
+    radial-gradient(circle at 80% 10%, rgba(0, 231, 255, 0.7) 0%, transparent 1.5%),
+    radial-gradient(circle at 40% 80%, rgba(255, 0, 231, 0.7) 0%, transparent 1.5%),
+    radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.5) 0%, transparent 1%),
+    radial-gradient(circle at 30% 50%, rgba(0, 231, 255, 0.5) 0%, transparent 1.2%),
+    radial-gradient(circle at 70% 20%, rgba(255, 0, 231, 0.6) 0%, transparent 1.2%);
+  background-position: var(--sparkle-x, 0%) var(--sparkle-y, 0%);
+  background-size: 200% 200%;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+  border-radius: inherit;
+  animation: sparkleShift 8s ease infinite;
+}
+
+/* Activate effects on hover */
+.legendary-card:hover::before {
+  opacity: 0.6;
+}
+
+.legendary-card:hover::after {
+  opacity: 0.4;
+}
+
+.legendary-card:hover {
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 231, 255, 0.3);
+}
+
+/* Sparkle animation */
+@keyframes sparkleShift {
+  0%, 100% { 
+    background-position: 0% 0%; 
+    opacity: 0.3;
+  }
+  25% { 
+    background-position: 100% 0%;
+    opacity: 0.5;
+  }
+  50% { 
+    background-position: 100% 100%;
+    opacity: 0.4;
+  }
+  75% { 
+    background-position: 0% 100%;
+    opacity: 0.6;
+  }
+}

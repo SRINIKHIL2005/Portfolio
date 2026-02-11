@@ -22,6 +22,39 @@ const Projects = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
   
+  // Mouse tracking for legendary card effects
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget.querySelector('.legendary-card') as HTMLElement;
+    if (card) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+      
+      const bgX = (x / rect.width) * 100;
+      const bgY = (y / rect.height) * 100;
+      
+      card.style.setProperty('--rotate-x', `${rotateX}deg`);
+      card.style.setProperty('--rotate-y', `${rotateY}deg`);
+      card.style.setProperty('--bg-x', `${bgX}%`);
+      card.style.setProperty('--bg-y', `${bgY}%`);
+      card.style.setProperty('--sparkle-x', `${bgX - 50}%`);
+      card.style.setProperty('--sparkle-y', `${bgY - 50}%`);
+    }
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget.querySelector('.legendary-card') as HTMLElement;
+    if (card) {
+      card.style.setProperty('--rotate-x', '0deg');
+      card.style.setProperty('--rotate-y', '0deg');
+    }
+  };
+  
   const projects: Project[] = [
     {
       title: "AI-Powered Quiz Generator",
@@ -250,8 +283,10 @@ const Projects = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
               >
-                <Card className="overflow-hidden border-accent/20 backdrop-blur-sm bg-card/75">
+                <Card className="legendary-card overflow-hidden border-accent/20 backdrop-blur-sm bg-card/75">
                   <div className="h-2 w-full bg-gradient-to-r from-tech-blue via-tech-purple to-tech-cyan"></div>
                   <CardHeader className="bg-secondary/30">
                     <div className="flex justify-between items-start">

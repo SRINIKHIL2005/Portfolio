@@ -122,6 +122,32 @@ const Skills = () => {
     return () => observer.disconnect();
   }, [activeCategory]);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+
+    card.style.setProperty('--rotate-x', `${rotateX}deg`);
+    card.style.setProperty('--rotate-y', `${rotateY}deg`);
+    card.style.setProperty('--bg-x', `${(x / rect.width) * 100}%`);
+    card.style.setProperty('--bg-y', `${(y / rect.height) * 100}%`);
+    card.style.setProperty('--sparkle-x', `${x}px`);
+    card.style.setProperty('--sparkle-y', `${y}px`);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.style.setProperty('--rotate-x', '0deg');
+    card.style.setProperty('--rotate-y', '0deg');
+  };
+
   return (
     <section id="skills" className="py-20 scroll-mt-24" ref={skillsRef}>
       <div className="container mx-auto px-4">
@@ -170,11 +196,16 @@ const Skills = () => {
                   const isAnimated = animatedSkills.has(skill.name);
                   
                   return (
-                    <Card 
-                      key={skill.name} 
-                      className="p-6 hover:shadow-lg transition-all duration-300 border-l-4 border-blue-500"
-                      data-skill={skill.name}
+                    <div
+                      key={skill.name}
+                      onMouseMove={handleMouseMove}
+                      onMouseLeave={handleMouseLeave}
+                      style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
                     >
+                      <Card 
+                        className="legendary-card p-6 hover:shadow-lg transition-all duration-300 border-l-4 border-blue-500"
+                        data-skill={skill.name}
+                      >
                       <div className="space-y-4">
                         {/* Skill Header */}
                         <div className="flex items-center justify-between">
@@ -231,6 +262,7 @@ const Skills = () => {
                         </div>
                       </div>
                     </Card>
+                    </div>
                   );
                 })}
               </div>

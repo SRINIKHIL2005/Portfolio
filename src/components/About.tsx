@@ -6,6 +6,39 @@ const About = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
 
+  // Mouse tracking for legendary card effects
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget.querySelector('.legendary-card') as HTMLElement;
+    if (card) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+      
+      const bgX = (x / rect.width) * 100;
+      const bgY = (y / rect.height) * 100;
+      
+      card.style.setProperty('--rotate-x', `${rotateX}deg`);
+      card.style.setProperty('--rotate-y', `${rotateY}deg`);
+      card.style.setProperty('--bg-x', `${bgX}%`);
+      card.style.setProperty('--bg-y', `${bgY}%`);
+      card.style.setProperty('--sparkle-x', `${bgX - 50}%`);
+      card.style.setProperty('--sparkle-y', `${bgY - 50}%`);
+    }
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget.querySelector('.legendary-card') as HTMLElement;
+    if (card) {
+      card.style.setProperty('--rotate-x', '0deg');
+      card.style.setProperty('--rotate-y', '0deg');
+    }
+  };
+
   return (
     <motion.section 
       id="about" 
@@ -79,8 +112,10 @@ const About = () => {
                 initial={{ y: 30, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
               >
-                <Card className="card-hover overflow-hidden border-0 shadow-md">
+                <Card className="legendary-card card-hover overflow-hidden border-0 shadow-md">
                   <div className={`h-1 w-full bg-gradient-to-r ${stat.color}`}></div>
                   <CardContent className="p-6 text-center">
                     <h3 className="text-muted-foreground text-sm font-mono">{stat.title}</h3>

@@ -18,6 +18,39 @@ const Experience = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
 
+  // Mouse tracking for legendary card effects
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget.querySelector('.legendary-card') as HTMLElement;
+    if (card) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+      
+      const bgX = (x / rect.width) * 100;
+      const bgY = (y / rect.height) * 100;
+      
+      card.style.setProperty('--rotate-x', `${rotateX}deg`);
+      card.style.setProperty('--rotate-y', `${rotateY}deg`);
+      card.style.setProperty('--bg-x', `${bgX}%`);
+      card.style.setProperty('--bg-y', `${bgY}%`);
+      card.style.setProperty('--sparkle-x', `${bgX - 50}%`);
+      card.style.setProperty('--sparkle-y', `${bgY - 50}%`);
+    }
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget.querySelector('.legendary-card') as HTMLElement;
+    if (card) {
+      card.style.setProperty('--rotate-x', '0deg');
+      card.style.setProperty('--rotate-y', '0deg');
+    }
+  };
+
   const timelineItems: TimelineItem[] = [
     {
       title: "Artificial Intelligence & Full-Stack Developer",
@@ -133,9 +166,11 @@ const Experience = () => {
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
                 variants={itemVariants}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
               >
                 <div className="md:w-1/2 mb-8 md:mb-0 md:px-8">
-                  <Card className={`card-hover ${
+                  <Card className={`legendary-card card-hover ${
                     item.type === 'work' 
                       ? 'border-l-tech-blue' 
                       : 'border-l-tech-purple'

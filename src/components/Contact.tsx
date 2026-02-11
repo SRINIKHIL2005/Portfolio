@@ -21,22 +21,31 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      // Always use /api/contact - works in both dev and production
+      // Development: Vite proxy will forward to localhost:5000
+      // Production: Vercel serverless function
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      if (response.ok) {
+      
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
         toast.success("Message sent successfully! I'll get back to you soon.");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        toast.error("Failed to send message. Please try again later.");
+        toast.error(data.message || "Failed to send message. Please try again later.");
       }
     } catch (error) {
+      console.error('Contact form error:', error);
       toast.error("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
@@ -116,9 +125,9 @@ const Contact = () => {
           </Card>
           
           <Card>
-            <CardContent className="p-6 md:p-8">
-              <h3 className="text-xl font-semibold mb-6">Send Me a Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <CardContent className="p-6 md:p-8">
+                <h3 className="text-xl font-semibold mb-6">Send Me a Message</h3>
+                <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="text-sm text-muted-foreground block mb-1">Name</label>
                   <Input 

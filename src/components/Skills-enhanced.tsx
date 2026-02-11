@@ -204,6 +204,32 @@ export default function Skills() {
     return () => observer.disconnect();
   }, [hasAnimated]);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+
+    card.style.setProperty('--rotate-x', `${rotateX}deg`);
+    card.style.setProperty('--rotate-y', `${rotateY}deg`);
+    card.style.setProperty('--bg-x', `${(x / rect.width) * 100}%`);
+    card.style.setProperty('--bg-y', `${(y / rect.height) * 100}%`);
+    card.style.setProperty('--sparkle-x', `${x}px`);
+    card.style.setProperty('--sparkle-y', `${y}px`);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.style.setProperty('--rotate-x', '0deg');
+    card.style.setProperty('--rotate-y', '0deg');
+  };
+
   return (
     <section id="skills" ref={skillsRef} className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4">
@@ -241,16 +267,21 @@ export default function Skills() {
         {/* Skills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredSkills.map((skill, index) => (
-            <Card 
+            <div
               key={skill.name}
-              className={`group hover:shadow-xl transition-all duration-500 border-0 bg-white/80 backdrop-blur-sm dark:bg-gray-800/80 ${
-                hasAnimated ? 'animate-fadeInUp' : 'opacity-0'
-              }`}
-              style={{ 
-                animationDelay: hasAnimated ? `${index * 100}ms` : '0ms',
-                transform: hasAnimated ? 'translateY(0)' : 'translateY(20px)'
-              }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
             >
+              <Card 
+                className={`legendary-card group hover:shadow-xl transition-all duration-500 border-0 bg-white/80 backdrop-blur-sm dark:bg-gray-800/80 ${
+                  hasAnimated ? 'animate-fadeInUp' : 'opacity-0'
+                }`}
+                style={{ 
+                  animationDelay: hasAnimated ? `${index * 100}ms` : '0ms',
+                  transform: hasAnimated ? 'translateY(0)' : 'translateY(20px)'
+                }}
+              >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
@@ -302,6 +333,7 @@ export default function Skills() {
                 </div>
               </div>
             </Card>
+            </div>
           ))}
         </div>
 

@@ -18,6 +18,39 @@ const Certificates = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
 
+  // Mouse tracking for legendary card effects
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget.querySelector('.legendary-card') as HTMLElement;
+    if (card) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+      
+      const bgX = (x / rect.width) * 100;
+      const bgY = (y / rect.height) * 100;
+      
+      card.style.setProperty('--rotate-x', `${rotateX}deg`);
+      card.style.setProperty('--rotate-y', `${rotateY}deg`);
+      card.style.setProperty('--bg-x', `${bgX}%`);
+      card.style.setProperty('--bg-y', `${bgY}%`);
+      card.style.setProperty('--sparkle-x', `${bgX - 50}%`);
+      card.style.setProperty('--sparkle-y', `${bgY - 50}%`);
+    }
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget.querySelector('.legendary-card') as HTMLElement;
+    if (card) {
+      card.style.setProperty('--rotate-x', '0deg');
+      card.style.setProperty('--rotate-y', '0deg');
+    }
+  };
+
   const containerVariants = {
     hidden: {},
     show: {
@@ -162,9 +195,14 @@ const Certificates = () => {
           animate={isInView ? "show" : "hidden"}
         >
           {visibleCerts.map((cert) => (
-            <motion.div key={`${cert.title}-${cert.date}`} variants={itemVariants}>
+            <motion.div 
+              key={`${cert.title}-${cert.date}`} 
+              variants={itemVariants}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
               <Card 
-                className="p-6 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 hover:shadow-lg transition-all duration-300"
+                className="legendary-card p-6 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 hover:shadow-lg transition-all duration-300"
               >
                 <div className="h-1 w-full bg-gradient-gold mb-4"></div>
               {/* Certificate Image */}

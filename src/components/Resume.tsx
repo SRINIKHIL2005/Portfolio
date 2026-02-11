@@ -73,6 +73,32 @@ const Resume = () => {
     window.open(defaultResume.pdf, '_blank');
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+
+    card.style.setProperty('--rotate-x', `${rotateX}deg`);
+    card.style.setProperty('--rotate-y', `${rotateY}deg`);
+    card.style.setProperty('--bg-x', `${(x / rect.width) * 100}%`);
+    card.style.setProperty('--bg-y', `${(y / rect.height) * 100}%`);
+    card.style.setProperty('--sparkle-x', `${x}px`);
+    card.style.setProperty('--sparkle-y', `${y}px`);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.style.setProperty('--rotate-x', '0deg');
+    card.style.setProperty('--rotate-y', '0deg');
+  };
+
   return (
     <section id="resume" className="py-20 scroll-mt-24">
       <div className="container mx-auto px-4">
@@ -86,7 +112,12 @@ const Resume = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          <Card className="border-l-4 border-blue-500">
+          <div
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+          >
+            <Card className="legendary-card border-l-4 border-blue-500">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <FileText className="h-6 w-6" />
@@ -141,8 +172,14 @@ const Resume = () => {
               </div>
             </CardContent>
           </Card>
+          </div>
 
-          <Card>
+          <div
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+          >
+            <Card className="legendary-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Briefcase className="h-6 w-6" />
@@ -164,16 +201,22 @@ const Resume = () => {
               </Button>
             </CardContent>
           </Card>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {resumes.map((resume) => (
-            <Card 
-              key={resume.id} 
-              className={`transition-all duration-300 hover:shadow-lg ${
-                selectedResume === resume.id ? 'ring-2 ring-blue-500' : ''
-              }`}
+            <div
+              key={resume.id}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
             >
+              <Card 
+                className={`legendary-card transition-all duration-300 hover:shadow-lg ${
+                  selectedResume === resume.id ? 'ring-2 ring-blue-500' : ''
+                }`}
+              >
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <CardTitle className="text-lg">{resume.title}</CardTitle>
@@ -213,6 +256,7 @@ const Resume = () => {
                 </Button>
               </CardFooter>
             </Card>
+            </div>
           ))}
         </div>
 

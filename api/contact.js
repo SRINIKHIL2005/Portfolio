@@ -1,36 +1,44 @@
-import express from 'express';
 import nodemailer from 'nodemailer';
-import cors from 'cors';
-import bodyParser from 'body-parser';
 
-const app = express();
-const PORT = 5000;
+export default async function handler(req, res) {
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
 
-app.use(cors());
-app.use(bodyParser.json());
-
-// Configure your Gmail credentials here
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'dronasrinikhil@gmail.com',
-    pass: 'mvfa pplc blwj fngv'
+  // Handle OPTIONS request
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
   }
-});
 
-app.post('/api/contact', async (req, res) => {
+  // Only allow POST requests
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method not allowed' });
+  }
+
   const { name, email, message } = req.body;
-  
+
   // Validate inputs
   if (!name || !email || !message) {
-    return res.status(400).json({ 
-      success: false,
-      message: 'All fields are required' 
-    });
+    return res.status(400).json({ message: 'All fields are required' });
   }
-  
+
   try {
-    await transporter.sendMail({
+    // Create transporter with Gmail
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER || 'dronasrinikhil@gmail.com',
+        pass: process.env.EMAIL_PASSWORD || 'xfuy xfka vcal nheu' // Use App Password
+      }
+    });
+
+    // Email options
+    const mailOptions = {
       from: 'dronasrinikhil@gmail.com', // Must be your authenticated email
       to: 'dronasrinikhil@gmail.com',
       replyTo: email, // Visitor's email for easy reply
@@ -55,22 +63,22 @@ app.post('/api/contact', async (req, res) => {
         </div>
       `,
       text: `New contact form submission\n\nFrom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    });
-    
-    res.status(200).json({ 
-      success: true,
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+
+    return res.status(200).json({ 
+      success: true, 
       message: 'Email sent successfully!' 
     });
+
   } catch (error) {
     console.error('Email sending error:', error);
-    res.status(500).json({ 
-      success: false,
+    return res.status(500).json({ 
+      success: false, 
       message: 'Failed to send email. Please try again later.',
       error: error.message 
     });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+}
